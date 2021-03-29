@@ -17,17 +17,6 @@ def display_image(caption, image):
     cv2.imshow(caption, image)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-
-def main():
-    ## Load images from the file location
-    parser = argparse.ArgumentParser(add_help=False)
-    parser.add_argument("--image", default='./images/cell3.jpeg', help="path for the cell image ")
-    args = parser.parse_args()
-    # Load our image
-    image = cv2.imread(args.image)
-    display_image('0 - Original Image', image) 
-    area=find_cells_area(image)
-    return(area)
     
 def find_cells_area(image):
     # Create a copy of our original image
@@ -59,6 +48,17 @@ def find_cells_area(image):
     display_image('Contours by area', image)
     # Save the ouput image
     cv2.imwrite('./images/cell3_output.jpeg',image)
+    return(area)
+
+def main():
+    ## Load images from the file location
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("--image", default='./images/cell3.jpeg', help="path for the cell image ")
+    args = parser.parse_args()
+    # Load our image
+    image = cv2.imread(args.image)
+    display_image('0 - Original Image', image) 
+    area=find_cells_area(image)
     return(area)
 
 if __name__ == "__main__":
